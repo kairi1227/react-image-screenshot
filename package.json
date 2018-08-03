@@ -2,15 +2,47 @@
   "name": "react-image-screenshot",
   "version": "0.1.0",
   "private": true,
+  "author": "kairi",
+  "email": "kairi1227@126.com",
+  "license": "Version 2.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kairi1227/react-image-screenshot.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "image",
+    "screenshot"
+  ],
   "dependencies": {
+    "lodash": "^4.17.10",
+    "prop-types": "^15.6.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4"
   },
+  "devDependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-react": "^6.0.15",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.28.8",
+    "react-scripts": "1.1.4",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0"
+  },
   "scripts": {
+    "clean": "rimraf dist/*",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run clean && webpack -p",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
