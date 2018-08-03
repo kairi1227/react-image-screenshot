@@ -19,10 +19,12 @@
     "screenshot"
   ],
   "dependencies": {
+    "invariant": "^2.2.4",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "15.6.1",
+    "react-canvas": "^1.3.0",
+    "react-dom": "15.6.1",
     "react-scripts": "1.1.4"
   },
   "devDependencies": {
