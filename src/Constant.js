@@ -1,0 +1,1 @@
+export const TOOL_ICONS = ['rect', 'round', 'arrow', 'world', '|', 'back', 'save', '|', 'close', 'ok'];

@@ -42,20 +42,23 @@ module.exports = {
     ]
   },
   externals: {
-    //react-canvas不支持高版本react
-    // react: {
-    //     root: 'React',
-    //     commonjs2: 'react',
-    //     commonjs: 'react',
-    //     amd: 'react',
-    // },
-    // 'react-dom': {
-    //     root: 'ReactDOM',
-    //     commonjs2: 'react-dom',
-    //     commonjs: 'react-dom',
-    //     amd: 'react-dom',
-    // },
+    react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react',
+    },
+    'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom',
+    },
     'prop-types': 'prop-types',
-    'lodash': 'lodash'
+    'lodash': 'lodash',
+    'classnames':'classnames',
+    'invariant': 'invariant',
+    'konva': 'konva',
+    'react-konva': 'react-konva'
   }
 };

@@ -19,14 +19,14 @@
     "screenshot"
   ],
   "dependencies": {
+    "classnames": "^2.2.6",
     "invariant": "^2.2.4",
     "konva": "^2.1.8",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-konva": "^1.7.12",
-    "react-scripts": "1.1.4"
+    "react-konva": "^1.7.12"
   },
   "devDependencies": {
     "babel-loader": "^7.1.2",

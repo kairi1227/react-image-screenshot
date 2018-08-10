@@ -1,21 +1,28 @@
 import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import './ImageScreenshot.css';
-import './font/iconfont.css';
 import invariant from 'invariant';
 import {Stage, Layer, Image, Rect} from 'react-konva';
 import ClearReact from './ClearRect';
+import classNames from 'classnames';
+import Tool from './Tool';
 
 class ImageScreenshot extends PureComponent {
+
+  static initialState = {
+    init: true,
+    model: false,
+    clear: {x: 0, y: 0, width: 0, height: 0},
+    toolSelected: '',
+    tools: {rect: []}
+  };
+
   constructor(props) {
     super(props);
     invariant(props.image, 'The parameter image is required, it is a Image src or Image base64, eg: require(url).');
     this.state = {
-      image: undefined,
-      init: true,
-      model: false,
-      clear: {x: 0, y: 0, width: 0, height: 0},
-      isDraw: false
+      image: null,
+      ...ImageScreenshot.initialState
     };
   }
 
@@ -28,9 +35,26 @@ class ImageScreenshot extends PureComponent {
     }
   }
 
+  selectTool(tool) {
+    let state = {toolSelected: tool};
+    const {close, onOk} = this.props;
+    const {clear} = this.state;
+    switch (tool) {
+      case 'close':
+        state = {...state, ...ImageScreenshot.initialState};
+        close();
+        break;
+      case 'ok':
+        onOk(clear);
+        break;
+      default:
+    }
+    this.setState(state);
+  }
+
   render() {
     const {width, height, x, y, toolClassName} = this.props;
-    const {init, model, clear} = this.state;
+    const {init, model, clear, toolSelected, tools} = this.state;
     return (
       <Fragment>
         <Stage
@@ -69,24 +93,27 @@ class ImageScreenshot extends PureComponent {
           <Layer>
             {
               !init && (clear.width > 0 || clear.height > 0)
-              && <ClearReact clear={clear} changeClear={e => this.setState({clear: {...clear, ...e}})}/>
+              &&
+              <ClearReact
+                tool={toolSelected}
+                clear={clear}
+                changeClear={e => this.setState({clear: {...clear, ...e}})}
+                toolDraw={e => {
+                  this.setState({tools: {rect: [e]}})
+                }}/>
+            }
+            {
+              tools.rect.length > 0 &&
+              <Rect {...tools.rect[0]} strokeWidth={2}
+                    stroke={'red'}/>
             }
           </Layer>
         </Stage>
         {
           !init && (clear.width > 0 || clear.height > 0)
           &&
-          <div className={`tool-bar ${toolClassName}`}>
-            <div className={'tool-item'}><i className={'iconfont icon-rect'}/></div>
-            <div className={'tool-item'}><i className={'iconfont icon-round'}/></div>
-            <div className={'tool-item'}><i className={'iconfont icon-arrow'}/></div>
-            <div className={'tool-item'}><i className={'iconfont icon-world'}/></div>
-            |
-            <div className={'tool-item'}><i className={'iconfont icon-back'}/></div>
-            <div className={'tool-item'}><i className={'iconfont icon-save'}/></div>
-            |
-            <div className={'tool-item'}><i className={'iconfont icon-close'}/></div>
-            <div className={'tool-item'}><i className={'iconfont icon-ok'}/></div>
+          <div className={classNames('tool-bar', {[toolClassName]: !!toolClassName})}>
+            <Tool selectTool={e => this.selectTool(e)} toolSelected={toolSelected}/>
           </div>
         }
       </Fragment>
@@ -100,7 +127,9 @@ ImageScreenshot.propTypes = {
   height: PropTypes.number,
   x: PropTypes.number,
   y: PropTypes.number,
-  toolClassName: PropTypes.string
+  toolClassName: PropTypes.string,
+  close: PropTypes.func,
+  onOk: PropTypes.func
 };
 
 ImageScreenshot.defaultProps = {
@@ -109,7 +138,11 @@ ImageScreenshot.defaultProps = {
   height: 768,
   x: 0,
   y: 0,
-  toolClassName: ''
+  toolClassName: '',
+  close: () => {
+  },
+  onOk: () => {
+  }
 };
 
 

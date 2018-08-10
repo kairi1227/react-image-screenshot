@@ -3,3 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.tool-test {
+  background-color: #796e93;
+  width: 270px;
+}
