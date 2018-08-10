@@ -1,3 +1,41 @@
 .cursor-move {
   cursor: move;
 }
+
+.tool-bar {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  color: #cccccc;
+  font-weight: bold;
+}
+
+.tool-item {
+  padding: 0;
+  margin: 0 3px;
+  border: solid 1px rgba(0, 0, 0, 0);
+}
+
+.tool-item:hover {
+  border: 1px solid #cccccc;
+}
+
+.tool-item > i {
+  font-size: 28px;
+  color: #2F96E0;
+  font-weight: normal;
+}
+
+.tool-item .icon-ok, .tool-item .icon-back {
+  color: #68AF45;
+}
+
+.tool-item .icon-close {
+  color: #E84635;
+}
+
+.tool-item .icon-save {
+  color: #7492D7
+}
