@@ -26,7 +26,8 @@
     "prop-types": "^15.6.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-konva": "^1.7.12"
+    "react-konva": "^1.7.12",
+    "react-lifecycles-compat": "^3.0.4"
   },
   "devDependencies": {
     "babel-loader": "^7.1.2",

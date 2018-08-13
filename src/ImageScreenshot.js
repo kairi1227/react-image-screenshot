@@ -1,5 +1,6 @@
 import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
+import {polyfill} from 'react-lifecycles-compat';
 import './ImageScreenshot.css';
 import invariant from 'invariant';
 import {Stage, Layer, Image, Rect} from 'react-konva';
@@ -145,5 +146,6 @@ ImageScreenshot.defaultProps = {
   }
 };
 
+polyfill(ImageScreenshot);
 
 export default ImageScreenshot;
